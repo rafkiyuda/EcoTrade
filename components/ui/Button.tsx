@@ -18,19 +18,19 @@ export const Button: React.FC<ButtonProps> = ({
   ...props
 }) => {
   const baseStyles =
-    "inline-flex items-center justify-center font-semibold text-base rounded-[12px] transition-colors focus:outline-none focus:ring-4 disabled:opacity-60 disabled:cursor-not-allowed min-h-[48px] px-6 py-3 select-none active:scale-[0.98]";
+    "inline-flex items-center justify-center font-bold text-base rounded-[14px] transition-all duration-200 focus:outline-none focus:ring-4 disabled:opacity-60 disabled:cursor-not-allowed min-h-[48px] px-6 py-3 select-none active:scale-[0.98] hover:scale-[1.01]";
 
   const variantStyles = {
     primary:
-      "bg-[#16A34A] text-white hover:bg-[#15803D] active:bg-[#15803D] focus:ring-green-300 shadow-sm",
+      "bg-gradient-to-r from-emerald-600 to-emerald-500 text-white hover:from-emerald-700 hover:to-emerald-600 focus:ring-emerald-500/20 shadow-md shadow-emerald-500/20",
     secondary:
-      "bg-[#0D9488] text-white hover:bg-[#0F766E] active:bg-[#0F766E] focus:ring-teal-300 shadow-sm",
+      "bg-gradient-to-r from-teal-600 to-teal-500 text-white hover:from-teal-700 hover:to-teal-600 focus:ring-teal-500/20 shadow-md shadow-teal-500/20",
     outline:
-      "bg-white text-[#111827] border-2 border-[#E5E7EB] hover:bg-[#F9FAFB] hover:border-[#16A34A] focus:ring-green-200",
+      "bg-white/90 text-slate-800 border-2 border-slate-200 hover:bg-slate-50 hover:border-emerald-500 hover:text-emerald-600 focus:ring-emerald-500/10 shadow-xs",
     danger:
-      "bg-[#DC2626] text-white hover:bg-[#B91C1C] active:bg-[#B91C1C] focus:ring-red-300 shadow-sm",
+      "bg-gradient-to-r from-red-600 to-red-500 text-white hover:from-red-700 hover:to-red-600 focus:ring-red-500/20 shadow-md shadow-red-500/20",
     accent:
-      "bg-[#F59E0B] text-[#111827] hover:bg-[#D97706] active:bg-[#D97706] focus:ring-amber-300 shadow-sm font-bold", // Dark text on accent as required!
+      "bg-gradient-to-r from-amber-500 to-amber-400 text-slate-900 hover:from-amber-600 hover:to-amber-500 focus:ring-amber-500/20 shadow-md shadow-amber-500/25 font-extrabold",
   };
 
   const widthStyle = fullWidth ? "w-full" : "";
@@ -43,7 +43,7 @@ export const Button: React.FC<ButtonProps> = ({
     >
       {isLoading ? (
         <span className="inline-flex items-center gap-2">
-          <Loader2 className="w-5 h-5 animate-spin" />
+          <Loader2 className="w-5 h-5 animate-spin text-current" />
           <span>Memuat...</span>
         </span>
       ) : (

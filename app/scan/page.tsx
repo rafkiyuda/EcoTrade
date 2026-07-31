@@ -18,6 +18,7 @@ import {
   MapPin,
   AlertTriangle,
   Info,
+  DollarSign,
 } from "lucide-react";
 
 interface ScanResponseData {
@@ -133,7 +134,7 @@ export default function ScanPage() {
     activeCategory?.name.toLowerCase().includes("smartphone");
 
   return (
-    <main className="min-h-screen bg-[#F9FAFB] p-4 sm:p-6 max-w-2xl mx-auto flex flex-col gap-6">
+    <main className="min-h-screen bg-slate-50/70 p-4 sm:p-6 max-w-2xl mx-auto flex flex-col gap-6">
       {/* Header */}
       <div className="flex items-center gap-3">
         <Link href="/">
@@ -142,11 +143,11 @@ export default function ScanPage() {
           </Button>
         </Link>
         <div>
-          <h1 className="text-xl sm:text-2xl font-extrabold text-[#111827] tracking-tight font-heading flex items-center gap-2">
-            <Sparkles className="w-6 h-6 text-[#0D9488]" />
+          <h1 className="text-2xl font-black text-slate-900 tracking-tight font-heading flex items-center gap-2">
+            <Sparkles className="w-6 h-6 text-teal-500" />
             EcoScan AI
           </h1>
-          <p className="text-sm text-[#4B5563]">Pindai foto sampah & cek estimasi harga pasar</p>
+          <p className="text-sm font-medium text-slate-500">Pindai foto sampah & cek estimasi harga pasar</p>
         </div>
       </div>
 
@@ -154,14 +155,17 @@ export default function ScanPage() {
       {/* STEP 1: LAYAR PERTAMA (UPLOAD / CAMERA INPUT)                        */}
       {/* ==================================================================== */}
       {step === "upload" && (
-        <Card className="flex flex-col items-center justify-center p-8 text-center border-2 border-dashed border-[#0D9488] min-h-[380px] gap-6 bg-[#CCFBF1]/15">
-          <div className="w-20 h-20 rounded-full bg-[#0D9488] text-white flex items-center justify-center shadow-lg transform hover:scale-105 transition-transform">
-            <Camera className="w-10 h-10 stroke-[2.5px]" />
+        <Card className="flex flex-col items-center justify-center p-8 sm:p-12 text-center border-2 border-dashed border-teal-500/50 min-h-[420px] gap-8 bg-gradient-to-b from-teal-50/40 via-white to-white glass-card">
+          <div className="relative">
+            <div className="absolute -inset-4 rounded-full bg-teal-500/20 blur-xl animate-pulse" />
+            <div className="relative w-24 h-24 rounded-3xl bg-gradient-to-tr from-teal-600 to-teal-400 text-white flex items-center justify-center shadow-xl shadow-teal-500/30 transform hover:scale-105 transition-transform duration-300">
+              <Camera className="w-12 h-12 stroke-[2.5px]" />
+            </div>
           </div>
 
           <div className="max-w-md flex flex-col gap-2">
-            <h2 className="text-xl sm:text-2xl font-bold text-[#111827]">Ambil Foto Barang</h2>
-            <p className="text-base text-[#4B5563]">
+            <h2 className="text-2xl font-black text-slate-900 font-heading">Ambil Foto Barang</h2>
+            <p className="text-base text-slate-600 font-medium leading-relaxed">
               Arahkan kamera ke sampah plastik, kertas, logam, atau elektronik bekas Anda.
             </p>
           </div>
@@ -184,21 +188,21 @@ export default function ScanPage() {
           />
 
           {/* Large Camera Trigger Button */}
-          <div className="flex flex-col gap-3 w-full max-w-xs">
+          <div className="flex flex-col gap-3.5 w-full max-w-sm">
             <Button
               variant="secondary"
               fullWidth
-              className="py-4 text-lg font-bold shadow-md"
+              className="py-4 text-lg font-bold shadow-xl shadow-teal-500/25"
               onClick={() => cameraInputRef.current?.click()}
             >
-              <Camera className="w-6 h-6 mr-2" />
+              <Camera className="w-6 h-6 mr-2.5" />
               📷 Foto Barang Langsung
             </Button>
 
             <button
               type="button"
               onClick={() => galleryInputRef.current?.click()}
-              className="min-h-[48px] px-4 py-2 text-base font-semibold text-[#0D9488] hover:underline flex items-center justify-center gap-2"
+              className="min-h-[48px] px-4 py-2 text-base font-bold text-teal-600 hover:text-teal-700 hover:underline flex items-center justify-center gap-2 transition-colors"
             >
               <Upload className="w-5 h-5" />
               atau pilih dari galeri
@@ -211,17 +215,17 @@ export default function ScanPage() {
       {/* STEP 2: LAYAR KEDUA (LOADING STATE)                                 */}
       {/* ==================================================================== */}
       {step === "loading" && (
-        <Card className="flex flex-col items-center justify-center p-12 text-center min-h-[380px] gap-6 bg-white">
-          <div className="relative flex items-center justify-center w-24 h-24">
-            <div className="absolute inset-0 rounded-full border-4 border-[#CCFBF1] animate-ping" />
-            <div className="w-20 h-20 rounded-full bg-[#0D9488] text-white flex items-center justify-center shadow-lg">
-              <RefreshCw className="w-10 h-10 animate-spin" />
+        <Card className="flex flex-col items-center justify-center p-12 text-center min-h-[400px] gap-6 bg-white glass-card">
+          <div className="relative flex items-center justify-center w-28 h-28">
+            <div className="absolute inset-0 rounded-full border-4 border-teal-200 animate-ping" />
+            <div className="w-24 h-24 rounded-3xl bg-gradient-to-tr from-teal-600 to-emerald-500 text-white flex items-center justify-center shadow-xl shadow-teal-500/30">
+              <RefreshCw className="w-12 h-12 animate-spin" />
             </div>
           </div>
 
-          <div className="flex flex-col gap-2">
-            <h2 className="text-2xl font-bold text-[#111827]">Sedang menganalisis...</h2>
-            <p className="text-base text-[#4B5563]">
+          <div className="flex flex-col gap-2 max-w-sm">
+            <h2 className="text-2xl font-black text-slate-900 font-heading">Sedang menganalisis...</h2>
+            <p className="text-base text-slate-600 font-medium leading-relaxed">
               EcoScan AI sedang mengidentifikasi jenis barang dan estimasi harganya
             </p>
           </div>
@@ -232,44 +236,44 @@ export default function ScanPage() {
       {/* STEP 3: LAYAR KETIGA (HASIL HASIL DETEKSI & OPSI LANJUTAN)          */}
       {/* ==================================================================== */}
       {(step === "result" || (step === "fallback" && selectedManualCategory)) && activeCategory && (
-        <div className="flex flex-col gap-5 animate-in fade-in duration-300">
-          <Card className="flex flex-col gap-6 p-6 bg-white border border-[#E5E7EB]">
+        <div className="flex flex-col gap-6 animate-in fade-in duration-300">
+          <Card className="flex flex-col gap-6 p-6 sm:p-8 bg-white border border-slate-200/80 shadow-xl shadow-slate-200/50">
             {/* Header & Confidence Badge */}
-            <div className="flex items-start justify-between gap-3 border-b border-[#E5E7EB] pb-4">
+            <div className="flex items-start justify-between gap-3 border-b border-slate-200/80 pb-4">
               <div>
-                <span className="text-xs font-bold text-[#6B7280] uppercase tracking-wider">
+                <span className="text-xs font-bold text-slate-400 uppercase tracking-wider">
                   Kategori Terdeteksi
                 </span>
-                <h2 className="text-2xl font-extrabold text-[#111827] mt-0.5">
+                <h2 className="text-2xl sm:text-3xl font-black text-slate-900 mt-0.5 font-heading">
                   {activeCategory.name}
                 </h2>
               </div>
-              <span className="px-3 py-1 bg-[#DCFCE7] text-[#166534] text-xs font-extrabold rounded-full border border-[#86EFAC] shrink-0">
+              <span className="px-3.5 py-1.5 bg-emerald-50 text-emerald-700 text-xs font-black rounded-full border border-emerald-200 shrink-0 shadow-xs">
                 ✓ {scanResult?.confidence || 85}% Akurat
               </span>
             </div>
 
             {/* Photo Preview Thumbnail & Reasoning */}
             {previewUrl && (
-              <div className="flex items-center gap-4 bg-[#F9FAFB] p-3 rounded-xl border border-[#E5E7EB]">
+              <div className="flex items-center gap-4 bg-slate-50 p-4 rounded-2xl border border-slate-200/80">
                 <img
                   src={previewUrl}
                   alt="Foto Sampah"
-                  className="w-16 h-16 rounded-lg object-cover border border-[#E5E7EB]"
+                  className="w-18 h-18 rounded-xl object-cover border border-slate-200 shadow-xs shrink-0"
                 />
-                <div className="text-sm text-[#4B5563] leading-tight">
-                  <p className="font-semibold text-[#111827]">Hasil Analisis AI:</p>
-                  <p className="text-xs mt-0.5">{scanResult?.reasoning}</p>
+                <div className="text-sm text-slate-600 leading-snug">
+                  <p className="font-bold text-slate-900">Hasil Analisis AI:</p>
+                  <p className="text-xs text-slate-500 mt-0.5 font-medium">{scanResult?.reasoning}</p>
                 </div>
               </div>
             )}
 
             {/* Estimasi Berat dengan Tombol Besar +/- */}
-            <div className="flex flex-col gap-2 bg-[#F9FAFB] p-4 rounded-2xl border border-[#E5E7EB]">
-              <label className="text-base font-bold text-[#111827] flex items-center justify-between">
+            <div className="flex flex-col gap-3 bg-slate-50 p-5 rounded-2xl border border-slate-200/80">
+              <label className="text-base font-bold text-slate-900 flex items-center justify-between font-heading">
                 <span>Estimasi Berat / Jumlah</span>
-                <span className="text-sm text-[#6B7280]">
-                  Satuan: <strong className="text-[#111827]">{activeCategory.unit}</strong>
+                <span className="text-xs text-slate-500 font-medium">
+                  Satuan: <strong className="text-slate-900">{activeCategory.unit}</strong>
                 </span>
               </label>
 
@@ -290,9 +294,9 @@ export default function ScanPage() {
                     min="0.1"
                     value={currentWeight}
                     onChange={(e) => setCurrentWeight(Math.max(0.1, parseFloat(e.target.value) || 0.1))}
-                    className="w-28 text-center text-3xl font-extrabold text-[#111827] bg-white border border-[#E5E7EB] rounded-xl py-2 focus:ring-4 focus:ring-green-200 focus:outline-none"
+                    className="w-28 text-center text-3xl font-black text-slate-900 bg-white border border-slate-200 rounded-xl py-2.5 focus:ring-4 focus:ring-emerald-500/15 focus:outline-none font-heading"
                   />
-                  <span className="text-lg font-bold text-[#4B5563]">{activeCategory.unit}</span>
+                  <span className="text-lg font-bold text-slate-500">{activeCategory.unit}</span>
                 </div>
 
                 <Button
@@ -306,24 +310,24 @@ export default function ScanPage() {
               </div>
             </div>
 
-            {/* ESTIMASI HARGA TOTAL (CARD WARNA ACCENT DENGAN TEKS GELAP #111827) */}
-            <div className="bg-[#F59E0B] rounded-2xl p-5 text-[#111827] flex flex-col gap-1 shadow-md border border-[#D97706]">
-              <span className="text-xs font-bold uppercase tracking-wider opacity-90">
+            {/* ESTIMASI HARGA TOTAL (ACCENT CARD DENGAN TEKS GELAP #0F172A) */}
+            <div className="bg-gradient-to-r from-amber-500 to-amber-400 rounded-2xl p-6 text-slate-900 flex flex-col gap-1.5 shadow-xl shadow-amber-500/20 border border-amber-400">
+              <span className="text-xs font-black uppercase tracking-wider opacity-90">
                 Estimasi Total Nilai Daur Ulang
               </span>
-              <div className="flex items-baseline justify-between gap-2">
-                <span className="text-3xl sm:text-4xl font-extrabold tracking-tight">
+              <div className="flex items-baseline justify-between gap-3">
+                <span className="text-3xl sm:text-4xl font-black tracking-tight font-heading">
                   Rp {calculatedTotalPrice.toLocaleString("id-ID")}
                 </span>
-                <span className="text-xs font-bold bg-[#111827] text-white px-2.5 py-1 rounded-full">
+                <span className="text-xs font-black bg-slate-900 text-white px-3 py-1.5 rounded-full shadow-xs">
                   @ Rp {unitPrice.toLocaleString("id-ID")}/{activeCategory.unit}
                 </span>
               </div>
             </div>
 
-            {/* Catatan Kecil Hak Cipta & Ketentuan */}
-            <p className="text-xs text-[#6B7280] leading-relaxed flex items-start gap-1.5 pt-1">
-              <Info className="w-4 h-4 shrink-0 text-[#9CA3AF] mt-0.5" />
+            {/* Catatan Kecil */}
+            <p className="text-xs text-slate-500 leading-relaxed flex items-start gap-2 pt-1 font-medium">
+              <Info className="w-4 h-4 shrink-0 text-slate-400 mt-0.5" />
               <span>
                 Estimasi berdasarkan harga pasar terkini. Harga final ditentukan saat penimbangan langsung di lokasi penjemputan/EcoPoint.
               </span>
@@ -332,22 +336,22 @@ export default function ScanPage() {
 
           {/* Special EcoGuide Button if item is Electronics */}
           {isElectronicsItem && (
-            <Card className="bg-[#CCFBF1] border-2 border-[#0D9488] p-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <Card className="bg-gradient-to-r from-teal-500 to-teal-600 text-white p-5 rounded-2xl shadow-lg shadow-teal-500/20 flex flex-col sm:flex-row items-center justify-between gap-4">
               <div className="flex items-center gap-3">
-                <div className="p-3 bg-[#0D9488] text-white rounded-xl">
+                <div className="p-3 bg-white/20 text-white rounded-xl backdrop-blur-md shrink-0">
                   <Wrench className="w-6 h-6 stroke-[2.5px]" />
                 </div>
                 <div>
-                  <h3 className="text-base font-bold text-[#0F766E]">
+                  <h3 className="text-base font-black font-heading">
                     Elektronik Bekas Terdeteksi!
                   </h3>
-                  <p className="text-xs text-[#115E59]">
+                  <p className="text-xs text-teal-100 font-medium">
                     Ketahui komponen berharga di dalamnya (RAM, tembaga, baterai) sebelum dijual.
                   </p>
                 </div>
               </div>
               <Link href="/ecoguide" className="w-full sm:w-auto">
-                <Button variant="secondary" className="w-full sm:w-auto text-sm py-3 px-5 whitespace-nowrap">
+                <Button variant="accent" className="w-full sm:w-auto text-sm py-3 px-5 whitespace-nowrap text-slate-900 font-black">
                   Lihat Panduan Bongkar (EcoGuide)
                 </Button>
               </Link>
@@ -355,11 +359,11 @@ export default function ScanPage() {
           )}
 
           {/* TWO MAIN ACTION BUTTONS */}
-          <div className="flex flex-col sm:flex-row gap-3 pt-2">
+          <div className="flex flex-col sm:flex-row gap-4 pt-2">
             <Button
               variant="primary"
               fullWidth
-              className="py-4 text-lg shadow-md"
+              className="py-4 text-lg shadow-xl shadow-emerald-500/25"
               onClick={() =>
                 router.push(
                   `/pickup?scan_id=${scanResult?.scan_id || ""}&category=${encodeURIComponent(
@@ -368,7 +372,7 @@ export default function ScanPage() {
                 )
               }
             >
-              <Truck className="w-6 h-6 mr-2" />
+              <Truck className="w-6 h-6 mr-2.5" />
               Jemput ke Rumah (EcoRoute)
             </Button>
 
@@ -384,7 +388,7 @@ export default function ScanPage() {
                 )
               }
             >
-              <MapPin className="w-6 h-6 mr-2 text-[#16A34A]" />
+              <MapPin className="w-6 h-6 mr-2.5 text-emerald-600" />
               Antar ke EcoPoint Terdekat
             </Button>
           </div>
@@ -393,7 +397,7 @@ export default function ScanPage() {
           <div className="flex justify-center pt-2">
             <button
               onClick={() => setStep("fallback")}
-              className="text-sm font-semibold text-[#0D9488] hover:underline"
+              className="text-sm font-bold text-teal-600 hover:underline"
             >
               Kategori tidak sesuai? Pilih Kategori Manual
             </button>
@@ -406,23 +410,23 @@ export default function ScanPage() {
       {/* ==================================================================== */}
       {step === "fallback" && !selectedManualCategory && (
         <div className="flex flex-col gap-6 animate-in fade-in duration-300">
-          <Card className="p-6 bg-white border border-[#E5E7EB] flex flex-col gap-4">
+          <Card className="p-6 sm:p-8 bg-white border border-slate-200/80 flex flex-col gap-5 shadow-xl">
             {errorMessage && (
-              <div className="p-4 bg-amber-50 border border-amber-200 rounded-xl text-sm font-medium text-[#92400E] flex items-center gap-2">
-                <AlertTriangle className="w-5 h-5 shrink-0 text-[#F59E0B]" />
+              <div className="p-4 bg-amber-50 border border-amber-200 rounded-2xl text-sm font-semibold text-amber-800 flex items-center gap-2.5">
+                <AlertTriangle className="w-5 h-5 shrink-0 text-amber-500" />
                 <span>{errorMessage}</span>
               </div>
             )}
 
             <div>
-              <h2 className="text-xl font-bold text-[#111827]">Pilih Kategori Secara Manual</h2>
-              <p className="text-sm text-[#4B5563] mt-1">
+              <h2 className="text-2xl font-black text-slate-900 font-heading">Pilih Kategori Secara Manual</h2>
+              <p className="text-sm text-slate-600 font-medium mt-1">
                 Pilih jenis sampah / rongsokan di bawah untuk melanjutkan hitung estimasi harga:
               </p>
             </div>
 
             {/* Grid options */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 pt-2">
               {fallbackCategoriesList.map((cat) => (
                 <button
                   key={cat.id}
@@ -430,12 +434,12 @@ export default function ScanPage() {
                     setSelectedManualCategory(cat);
                     setStep("result");
                   }}
-                  className="p-4 text-left border-2 border-[#E5E7EB] hover:border-[#16A34A] rounded-2xl transition-all hover:shadow-sm bg-[#F9FAFB] active:scale-[0.98] flex flex-col gap-1 min-h-[64px]"
+                  className="p-4 text-left border-2 border-slate-200/80 hover:border-emerald-500 rounded-2xl transition-all duration-200 hover:shadow-md bg-slate-50/50 active:scale-[0.98] flex flex-col gap-1.5 min-h-[72px]"
                 >
-                  <span className="font-bold text-[#111827] text-base">{cat.name}</span>
-                  <div className="flex justify-between items-center text-xs text-[#6B7280] mt-1">
-                    <span className="uppercase font-semibold text-[#0D9488]">{cat.category_group}</span>
-                    <span className="font-bold text-[#16A34A] text-sm">
+                  <span className="font-bold text-slate-900 text-base">{cat.name}</span>
+                  <div className="flex justify-between items-center text-xs text-slate-500 mt-1">
+                    <span className="uppercase font-bold text-teal-600">{cat.category_group}</span>
+                    <span className="font-extrabold text-emerald-600 text-sm">
                       Rp {cat.base_price_per_unit.toLocaleString("id-ID")}/{cat.unit}
                     </span>
                   </div>
@@ -443,7 +447,7 @@ export default function ScanPage() {
               ))}
             </div>
 
-            <Button variant="outline" onClick={() => setStep("upload")} className="mt-4 py-3">
+            <Button variant="outline" onClick={() => setStep("upload")} className="mt-4 py-3.5">
               <Camera className="w-5 h-5 mr-2" />
               Coba Foto Ulang
             </Button>

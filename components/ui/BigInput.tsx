@@ -13,15 +13,15 @@ export const BigInput = React.forwardRef<HTMLInputElement, BigInputProps>(
     const inputId = id || `big-input-${label.toLowerCase().replace(/\s+/g, "-")}`;
 
     return (
-      <div className="flex flex-col gap-1.5 w-full">
-        {/* Label di atas input, bukan placeholder-only */}
-        <label htmlFor={inputId} className="text-base font-semibold text-[#111827]">
+      <div className="flex flex-col gap-2 w-full">
+        {/* Label di atas input */}
+        <label htmlFor={inputId} className="text-sm font-bold text-slate-800 font-heading">
           {label}
         </label>
 
         <div className="relative flex items-center w-full">
           {leftIcon && (
-            <div className="absolute left-3.5 flex items-center pointer-events-none text-[#6B7280]">
+            <div className="absolute left-4 flex items-center pointer-events-none text-slate-400">
               {leftIcon}
             </div>
           )}
@@ -29,29 +29,31 @@ export const BigInput = React.forwardRef<HTMLInputElement, BigInputProps>(
           <input
             id={inputId}
             ref={ref}
-            className={`w-full min-h-[48px] px-4 ${leftIcon ? "pl-11" : ""} ${
-              rightIcon ? "pr-11" : ""
-            } bg-white text-[#111827] text-base rounded-[12px] border ${
-              error ? "border-[#DC2626] focus:ring-red-200" : "border-[#E5E7EB] focus:ring-green-200"
-            } focus:border-[#16A34A] focus:outline-none focus:ring-4 transition-all placeholder:text-[#9CA3AF] disabled:bg-gray-100 disabled:cursor-not-allowed ${className}`}
+            className={`w-full min-h-[50px] px-4.5 ${leftIcon ? "pl-12" : ""} ${
+              rightIcon ? "pr-12" : ""
+            } bg-slate-50/80 text-slate-900 text-base font-medium rounded-xl border ${
+              error
+                ? "border-red-400 focus:ring-red-500/15 focus:border-red-500 bg-red-50/20"
+                : "border-slate-200 focus:ring-4 focus:ring-emerald-500/15 focus:border-emerald-500 focus:bg-white"
+            } focus:outline-none transition-all duration-200 placeholder:text-slate-400 disabled:bg-slate-100 disabled:cursor-not-allowed ${className}`}
             {...props}
           />
 
           {rightIcon && (
-            <div className="absolute right-3.5 flex items-center text-[#6B7280]">
+            <div className="absolute right-4 flex items-center text-slate-400">
               {rightIcon}
             </div>
           )}
         </div>
 
         {error && (
-          <p className="text-sm font-medium text-[#DC2626] mt-0.5" role="alert">
+          <p className="text-xs font-semibold text-red-600 mt-0.5" role="alert">
             {error}
           </p>
         )}
 
         {!error && helperText && (
-          <p className="text-sm text-[#6B7280] mt-0.5">{helperText}</p>
+          <p className="text-xs text-slate-500 mt-0.5">{helperText}</p>
         )}
       </div>
     );

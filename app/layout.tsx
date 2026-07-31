@@ -1,24 +1,23 @@
 import type { Metadata } from "next";
-import { Inter, Poppins } from "next/font/google";
+import { Plus_Jakarta_Sans, Outfit } from "next/font/google";
 import "./globals.css";
 import { AuthProvider } from "@/lib/context/AuthContext";
 import Navigation from "@/components/Navigation";
 
-const inter = Inter({
+const plusJakartaSans = Plus_Jakarta_Sans({
   subsets: ["latin"],
-  variable: "--font-inter",
+  variable: "--font-sans",
   display: "swap",
 });
 
-const poppins = Poppins({
-  weight: ["500", "600", "700", "800"],
+const outfit = Outfit({
   subsets: ["latin"],
-  variable: "--font-poppins",
+  variable: "--font-heading",
   display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "EcoTrade - Platform Agregator Rantai Pasok Sirkular AI",
+  title: "EcoTrade — Platform Agregator Rantai Pasok Sirkular AI",
   description:
     "EcoTrade menghubungkan penghasil limbah rumah tangga, pemulung, dan pengepul langsung dengan industri daur ulang di Indonesia.",
 };
@@ -29,8 +28,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="id" className={`${inter.variable} ${poppins.variable}`}>
-      <body className="font-sans bg-[#F9FAFB] text-[#111827] min-h-screen flex flex-col antialiased">
+    <html lang="id" className={`${plusJakartaSans.variable} ${outfit.variable}`}>
+      <body className="font-sans bg-slate-50/70 text-slate-900 min-h-screen flex flex-col antialiased selection:bg-emerald-500 selection:text-white">
         <AuthProvider>
           <Navigation />
           <div className="flex-1">{children}</div>

@@ -1,49 +1,51 @@
 /**
- * EcoTrade Design System Theme Tokens & Guidelines Reference
+ * EcoTrade Premium Design System Theme Tokens & Guidelines Reference
  * 
  * Rules:
  * 1. Accessibility: All touch targets must be at least 48x48px.
  * 2. Contrast: Text contrast ratio against background minimum 4.5:1.
- * 3. Accent Rule: Always use dark text (#111827) on top of accent (#F59E0B) for high readability.
- * 4. Typography: Base font size is 16px (1rem). Never smaller than 16px.
+ * 3. Accent Rule: Always use dark text (#0F172A) on top of accent (#F59E0B) for high readability.
+ * 4. Typography: Plus Jakarta Sans for Body, Outfit for Headings. Base font size is 16px (1rem).
  */
 
 export const theme = {
   colors: {
     primary: {
-      default: "#16A34A",
-      hover: "#15803D",
-      light: "#DCFCE7",
+      default: "#10B981", // Rich Emerald 500
+      hover: "#059669",   // Emerald 600
+      light: "#ECFDF5",   // Emerald 50
     },
     secondary: {
-      default: "#0D9488",
-      hover: "#0F766E",
+      default: "#14B8A6", // Teal 500
+      hover: "#0F766E",   // Teal 700
+      light: "#F0FDFA",   // Teal 50
     },
     accent: {
-      default: "#F59E0B",
-      hover: "#D97706",
-      textOnAccent: "#111827", // CRITICAL: Dark text on accent background
+      default: "#F59E0B", // Amber 500
+      hover: "#D97706",   // Amber 600
+      textOnAccent: "#0F172A", // CRITICAL: Slate 900 dark text on accent background
     },
     danger: {
-      default: "#DC2626",
-      hover: "#B91C1C",
+      default: "#EF4444", // Red 500
+      hover: "#DC2626",   // Red 600
+      light: "#FEF2F2",   // Red 50
     },
     neutral: {
-      bg: "#F9FAFB",
-      text: "#111827",
-      border: "#E5E7EB",
+      bg: "#F8FAFC",
+      text: "#0F172A",
+      border: "#E2E8F0",
       white: "#FFFFFF",
     },
   },
   typography: {
-    fontBody: "var(--font-inter), system-ui, sans-serif",
-    fontHeading: "var(--font-poppins), system-ui, sans-serif",
+    fontBody: "var(--font-sans), 'Plus Jakarta Sans', system-ui, sans-serif",
+    fontHeading: "var(--font-heading), 'Outfit', system-ui, sans-serif",
     baseSize: "16px",
   },
   ux: {
     minTouchTargetSize: "48px",
-    borderRadiusCard: "16px",
-    borderRadiusButton: "12px",
+    borderRadiusCard: "24px",
+    borderRadiusButton: "14px",
   },
 } as const;
 

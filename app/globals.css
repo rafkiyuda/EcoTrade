@@ -1,51 +1,87 @@
 @import "tailwindcss";
 
 @theme {
-  --color-primary: #16A34A;
-  --color-primary-hover: #15803D;
-  --color-primary-light: #DCFCE7;
+  --color-primary: #10B981;
+  --color-primary-hover: #059669;
+  --color-primary-light: #ECFDF5;
   
-  --color-secondary: #0D9488;
+  --color-secondary: #14B8A6;
   --color-secondary-hover: #0F766E;
   
   --color-accent: #F59E0B;
   --color-accent-hover: #D97706;
   
-  --color-danger: #DC2626;
-  --color-danger-hover: #B91C1C;
+  --color-danger: #EF4444;
+  --color-danger-hover: #DC2626;
   
-  --color-neutral-bg: #F9FAFB;
-  --color-neutral-text: #111827;
-  --color-neutral-border: #E5E7EB;
+  --color-neutral-bg: #F8FAFC;
+  --color-neutral-text: #0F172A;
+  --color-neutral-border: #E2E8F0;
   
-  --font-sans: var(--font-inter), system-ui, -apple-system, sans-serif;
-  --font-heading: var(--font-poppins), system-ui, -apple-system, sans-serif;
+  --font-sans: var(--font-sans), 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --font-heading: var(--font-heading), 'Outfit', system-ui, -apple-system, sans-serif;
 }
 
 :root {
-  --font-inter: 'Inter', sans-serif;
-  --font-poppins: 'Poppins', sans-serif;
+  --font-sans: 'Plus Jakarta Sans', sans-serif;
+  --font-heading: 'Outfit', sans-serif;
 }
 
 html {
   font-size: 16px;
+  scroll-behavior: smooth;
   -webkit-tap-highlight-color: transparent;
 }
 
 body {
-  background-color: #F9FAFB;
-  color: #111827;
+  background-color: #F8FAFC;
+  color: #0F172A;
   font-family: var(--font-sans);
   font-size: 1rem;
-  line-height: 1.5;
+  line-height: 1.6;
   min-height: 100vh;
+  letter-spacing: -0.01em;
 }
 
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading);
+  letter-spacing: -0.02em;
 }
 
-/* Ensure minimum touch target size 48x48px for interactive elements */
-button, a, input, select, textarea {
-  font-size: 1rem;
+/* Glassmorphism Utility Classes */
+.glass-card {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(226, 232, 240, 0.8);
+}
+
+.glass-card-hover {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.glass-card-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 20px 30px -10px rgba(16, 185, 129, 0.08), 0 10px 15px -5px rgba(0, 0, 0, 0.04);
+  border-color: rgba(16, 185, 129, 0.3);
+}
+
+/* Glow Background Effects */
+.bg-glow-emerald {
+  background: radial-gradient(circle at 50% 0%, rgba(16, 185, 129, 0.15), transparent 70%);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #F1F5F9;
+}
+::-webkit-scrollbar-thumb {
+  background: #CBD5E1;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94A3B8;
 }
