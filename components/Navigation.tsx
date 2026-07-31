@@ -129,10 +129,10 @@ export const Navigation: React.FC = () => {
               <button
                 type="button"
                 onClick={() => setShowRoleDropdown(!showRoleDropdown)}
-                className="min-h-[44px] px-3 py-1.5 rounded-xl border border-[#E5E7EB] bg-[#F9FAFB] hover:bg-gray-100 flex items-center gap-2 text-xs sm:text-sm font-semibold text-[#111827] focus:outline-none focus:ring-2 focus:ring-green-300"
+                className="min-h-[48px] px-3.5 py-2 rounded-xl border border-[#E5E7EB] bg-[#F9FAFB] hover:bg-gray-100 flex items-center gap-2 text-sm font-semibold text-[#111827] focus:outline-none focus:ring-2 focus:ring-green-300"
                 title="Pilih Peran Pengguna (Untuk Pengujian Demo)"
               >
-                <span className="w-2 h-2 rounded-full bg-[#16A34A] animate-pulse"></span>
+                <span className="w-2.5 h-2.5 rounded-full bg-[#16A34A] animate-pulse"></span>
                 <span className="hidden xs:inline text-[#6B7280]">Peran:</span>
                 <span className="font-bold text-[#16A34A] truncate max-w-[130px] sm:max-w-[180px]">
                   {roleLabels[role]}
@@ -141,8 +141,8 @@ export const Navigation: React.FC = () => {
               </button>
 
               {showRoleDropdown && (
-                <div className="absolute right-0 mt-2 w-56 bg-white rounded-2xl shadow-xl border border-[#E5E7EB] py-2 z-50 animate-in fade-in zoom-in-95">
-                  <div className="px-3 py-1.5 border-b border-[#E5E7EB] text-xs font-bold text-[#6B7280]">
+                <div className="absolute right-0 mt-2 w-60 bg-white rounded-2xl shadow-xl border border-[#E5E7EB] py-2 z-50 animate-in fade-in zoom-in-95">
+                  <div className="px-3.5 py-2 border-b border-[#E5E7EB] text-xs font-bold text-[#6B7280]">
                     PILIH PERAN (MODE DEMO)
                   </div>
                   {(["rumah_tangga", "pemulung", "pengepul", "admin"] as UserRole[]).map(
@@ -153,14 +153,14 @@ export const Navigation: React.FC = () => {
                           setRole(r);
                           setShowRoleDropdown(false);
                         }}
-                        className={`w-full text-left px-4 py-2.5 text-sm font-medium transition-colors flex items-center justify-between ${
+                        className={`w-full text-left px-4 py-3 text-sm font-semibold transition-colors flex items-center justify-between min-h-[48px] ${
                           role === r
                             ? "bg-[#DCFCE7] text-[#166534] font-bold"
                             : "text-[#374151] hover:bg-[#F9FAFB]"
                         }`}
                       >
                         <span>{roleLabels[r]}</span>
-                        {role === r && <span className="text-xs font-bold">✓</span>}
+                        {role === r && <span className="text-sm font-bold">✓</span>}
                       </button>
                     )
                   )}
@@ -172,10 +172,10 @@ export const Navigation: React.FC = () => {
             {isLoggedIn ? (
               <button
                 onClick={() => logout()}
-                className="min-h-[44px] min-w-[44px] px-3 py-2 rounded-xl bg-red-50 text-[#DC2626] font-semibold text-sm hover:bg-red-100 flex items-center gap-1.5 transition-colors"
+                className="min-h-[48px] min-w-[48px] px-3.5 py-2 rounded-xl bg-red-50 text-[#DC2626] font-semibold text-sm hover:bg-red-100 flex items-center gap-1.5 transition-colors"
                 title="Keluar Akun"
               >
-                <LogOut className="w-4 h-4" />
+                <LogOut className="w-5 h-5" />
                 <span className="hidden sm:inline">Keluar</span>
               </button>
             ) : (
@@ -184,9 +184,9 @@ export const Navigation: React.FC = () => {
                   setIsLoggedIn(true);
                   router.push("/");
                 }}
-                className="min-h-[44px] px-4 py-2 rounded-xl bg-[#16A34A] text-white font-semibold text-sm hover:bg-[#15803D] flex items-center gap-1.5 transition-colors shadow-xs"
+                className="min-h-[48px] px-4 py-2 rounded-xl bg-[#16A34A] text-white font-semibold text-sm hover:bg-[#15803D] flex items-center gap-1.5 transition-colors shadow-xs"
               >
-                <LogIn className="w-4 h-4" />
+                <LogIn className="w-5 h-5" />
                 <span>Masuk Demo</span>
               </button>
             )}
@@ -215,7 +215,7 @@ export const Navigation: React.FC = () => {
                 aria-label={item.label}
               >
                 <Icon className={`w-6 h-6 shrink-0 ${isActive ? "stroke-[2.5px]" : "stroke-[2px]"}`} />
-                <span className={`text-[12px] leading-tight mt-0.5 tracking-tight ${isActive ? "font-bold text-[#16A34A]" : "font-medium text-[#6B7280]"}`}>
+                <span className={`text-xs leading-tight mt-0.5 tracking-tight ${isActive ? "font-bold text-[#16A34A]" : "font-medium text-[#6B7280]"}`}>
                   {item.label}
                 </span>
               </Link>

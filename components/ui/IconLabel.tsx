@@ -29,7 +29,7 @@ export const IconLabel: React.FC<IconLabelProps> = ({
       type="button"
       onClick={onClick}
       disabled={disabled}
-      className={`min-h-[48px] min-w-[48px] px-2 py-1.5 flex flex-col items-center justify-center gap-1 rounded-xl transition-colors focus:outline-none focus:ring-2 focus:ring-green-300 disabled:opacity-50 disabled:cursor-not-allowed ${activeClass} ${className}`}
+      className={`min-h-[48px] min-w-[48px] px-3 py-2 flex flex-col items-center justify-center gap-1 rounded-xl transition-colors focus:outline-none focus:ring-2 focus:ring-green-300 disabled:opacity-50 disabled:cursor-not-allowed ${activeClass} ${className}`}
       aria-label={label}
     >
       <div className="relative flex items-center justify-center min-h-[24px] min-w-[24px]">
@@ -40,7 +40,7 @@ export const IconLabel: React.FC<IconLabelProps> = ({
           </span>
         )}
       </div>
-      <span className="text-xs sm:text-sm font-medium tracking-tight text-center leading-tight">
+      <span className="text-xs sm:text-sm font-semibold tracking-tight text-center leading-tight">
         {label}
       </span>
     </button>

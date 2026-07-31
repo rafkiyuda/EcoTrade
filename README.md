@@ -1,36 +1,127 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# EcoTrade — Platform Agregator Rantai Pasok Sirkular Berbasis AI
 
-## Getting Started
+EcoTrade adalah platform agregator rantai pasok sirkular berbasis AI yang menghubungkan penghasil limbah rumah tangga, pemulung, dan pengepul langsung dengan industri daur ulang di Indonesia.
 
-First, run the development server:
+Model bisnis EcoTrade bersifat **asset-light**: EcoTrade tidak memiliki armada atau gudang fisik sendiri, melainkan memberdayakan jaringan pengepul dan pemulung lokal dengan dukungan teknologi untuk standardisasi harga pasar dan keamanan transaksi.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+---
+
+## 🌟 Fitur Fitur Utama (Branding EcoTrade)
+
+1. 🔍 **EcoScan AI** (`/scan`) — Pemindai foto sampah/barang bekas berbasis AI Gemini yang mengidentifikasi kategori limbah, estimasi berat, dan nilai pasar secara otomatis.
+2. 🛠️ **EcoGuide** (`/ecoguide`) — Panduan pembongkaran aman e-waste (elektronik bekas) bertahap untuk mengekstraksi komponen bernilai tinggi (tembaga, RAM, baterai lithium).
+3. 🚚 **EcoRoute** (`/pickup`) — Sistem penjemputan *on-demand* berbasis lokasi GPS dengan **Multi-Tier Fallback Engine** (Tier 1: Radius 2km Pemulung Mitra $\rightarrow$ Tier 2: Radius 5km $\rightarrow$ Tier 3: Kurir Cadangan).
+4. 📦 **EcoHub** (`/dashboard/pengepul`) — Dashboard untuk pengepul mitra untuk mengelola inventaris stok gudang, grafik analitik volume masuk 7 hari, dan konsolidasi tonase.
+5. 🔒 **EcoVault** — Mekanisme *escrow* (rekening bersama) khusus transaksi B2B bertonase besar dari pengepul ke pabrik daur ulang untuk menjamin keamanan pembayaran.
+6. 📊 **EcoTrack** (`/dashboard/impact`) — Dashboard dampak lingkungan real-time untuk mencatat tonase daur ulang, estimasi reduksi karbon (CO₂e), serta ekspor laporan kepatuhan ESG korporasi.
+
+---
+
+## 👥 Empat Peran Pengguna (Roles)
+
+- **Rumah Tangga / Penyetor**: Ingin menjual limbah anorganik / elektronik bekas dengan harga transparan dan proses penjemputan mudah.
+- **Pemulung (Kurir EcoRoute)**: Berperan ganda merespons permintaan jemput *on-demand* di sekitar rute kerjanya. UX dirancang ultra-sederhana (ikon besar + teks label, tap target $\ge 48\times48\text{px}$).
+- **Pengepul Mitra**: Konsolidasi stok hasil penyetoran dan menjual ke industri dalam tonase besar via EcoVault.
+- **Industri Daur Ulang & Admin**: Pasokan bahan baku terverifikasi, verifikasi mitra, dan pelaporan ESG/EPR.
+
+---
+
+## 🎨 Design System & Prinsip UX
+
+- **Warna Utama**:
+  - `Primary (Hijau)`: `#16A34A` (Hover: `#15803D`) — Tombol Utama / CTA
+  - `Secondary (Teal)`: `#0D9488` — Elemen AI (EcoScan) & Analitik
+  - `Accent (Kuning Keemasan)`: `#F59E0B` — Highlight Harga / Nilai (PENTING: Selalu menggunakan teks warna gelap `#111827` di atas warna ini untuk kontras rasio $>4.5:1$)
+  - `Danger (Merah)`: `#DC2626` — Error / Pembatalan
+- **Tipografi**:
+  - Body Text: `Inter`
+  - Headings: `Poppins`
+  - Font Base: **16px** (tidak ada teks di bawah 14px di seluruh UI)
+- **Aksesibilitas Pemulung**:
+  - Semua tombol interaktif minimal **48x48px**.
+  - Setiap ikon WAJIB disertai teks label.
+  - Alur tugas utama maksimal 3 langkah linear.
+
+---
+
+## 🛠️ Teknologi & Dependencies
+
+- **Framework**: Next.js 16 (App Router) & React 19
+- **Bahasa**: TypeScript
+- **Styling**: Tailwind CSS v4 & Lucide React Icons
+- **AI Engine**: Google GenAI SDK (`@google/genai`)
+- **Database & Auth**: Supabase PostgreSQL & `@supabase/supabase-js`
+- **Visualisasi Data**: `recharts`
+
+---
+
+## 📋 Pengaturan Environment Variables (`.env.local`)
+
+Buat berkas `.env.local` di direktori utama proyek dan isi variabel berikut:
+
+```env
+# Credentials Supabase API
+NEXT_PUBLIC_SUPABASE_URL=https://your-project.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
+
+# Koneksi Database PostgreSQL Supabase
+DATABASE_URL=postgresql://postgres.user:password@aws-1-ap-southeast-2.pooler.supabase.com:6543/postgres
+
+# Credentials Payment Gateway Midtrans (EcoVault Escrow)
+MIDTRANS_SERVER_KEY=your_midtrans_server_key
+NEXT_PUBLIC_MIDTRANS_CLIENT_KEY=your_midtrans_client_key
+
+# Kunci API Gemini untuk AI Scanner (EcoScan)
+GEMINI_API_KEY=your_gemini_api_key_here
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🗄️ Jalankan Migrasi Database Supabase
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Seluruh skema database PostgreSQL, enum custom, fungsi trigger `handle_new_user`, aturan Row Level Security (RLS), dan seed data telah disiapkan dalam satu berkas SQL:
 
-## Learn More
+1. Buka [Supabase Dashboard](https://app.supabase.com) proyek Anda.
+2. Buka menu **SQL Editor**.
+3. Salin seluruh isi dari berkas:
+   - `supabase/migrations/20260731000000_ecotrade_schema.sql` (atau `lib/db_migration.sql`)
+4. Tempel ke SQL Editor dan tekan **Run**.
 
-To learn more about Next.js, take a look at the following resources:
+### Struktur 8 Tabel Utama:
+- `profiles`: Data pengguna & role (rumah_tangga, pemulung, pengepul, admin)
+- `waste_categories`: Katalog limbah & acuan harga standar nasional
+- `scan_results`: Riwayat deteksi foto limbah oleh EcoScan AI
+- `transactions`: Transaksi penyetoran limbah (Drop-off & On-demand Pickup)
+- `pickup_requests`: Permintaan jemput EcoRoute & tracking status real-time
+- `ecopoints`: Lokasi fisik titik penyetoran / lapak konsolidasi
+- `b2b_orders`: Transaksi tonase besar pengepul ke pabrik (EcoVault Escrow)
+- `impact_logs`: Log reduksi CO₂e & tonase daur ulang (EcoTrack ESG)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🚀 Cara Menjalankan Aplikasi Secara Lokal
 
-## Deploy on Vercel
+### 1. Install Dependensi
+```bash
+npm install
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### 2. Jalankan Server Pengembangan (Development Mode)
+```bash
+npm run dev
+```
+Buka [http://localhost:3000](http://localhost:3000) pada browser Anda.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+> 💡 **Tips Pengujian (Demo Role Switcher)**:
+> Pada bagian kanan atas header navigasi, gunakan dropdown **Peran** untuk beralih secara instant antara tampilan *Rumah Tangga*, *Pemulung (Kurir EcoRoute)*, *Pengepul Mitra*, dan *Admin*.
+
+### 3. Jalankan Production Build Check
+```bash
+npm run build
+npm run start
+```
+
+---
+
+## 📄 Lisensi & Hak Cipta
+Hak Cipta &copy; 2026 **EcoTrade Indonesia**. Platform Agregator Rantai Pasok Sirkular Berbasis AI.
