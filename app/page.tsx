@@ -140,7 +140,7 @@ export default function LandingPage() {
               </span>
               <h3 className="text-2xl font-bold text-slate-900 font-heading">Foto Barangnya</h3>
               <p className="text-base text-slate-600 leading-relaxed font-medium">
-                Foto rongsok/elektronik lewat **EcoScan AI**. Sistem otomatis mendeteksi kategori dan menghitung estimasi harganya.
+                Foto rongsok/elektronik lewat <strong className="font-extrabold text-slate-900">EcoScan AI</strong>. Sistem otomatis mendeteksi kategori dan menghitung estimasi harganya.
               </p>
             </Card>
 
@@ -154,7 +154,7 @@ export default function LandingPage() {
               </span>
               <h3 className="text-2xl font-bold text-slate-900 font-heading">Pilih Antar / Jemput</h3>
               <p className="text-base text-slate-600 leading-relaxed font-medium">
-                Pilih antar sendiri ke **EcoPoint** terdekat atau minta dijemput langsung oleh **Pemulung Mitra EcoRoute**.
+                Pilih antar sendiri ke <strong className="font-extrabold text-slate-900">EcoPoint</strong> terdekat atau minta dijemput langsung oleh <strong className="font-extrabold text-slate-900">Pemulung Mitra EcoRoute</strong>.
               </p>
             </Card>
 

@@ -455,7 +455,7 @@ export default function PengepulDashboardPage() {
                 <div className="p-3 bg-[#FEF3C7] border border-[#FCD34D] rounded-xl text-xs text-[#92400E] flex items-start gap-2">
                   <ShieldCheck className="w-5 h-5 shrink-0 text-[#F59E0B]" />
                   <span>
-                    Dana pembeli korporat akan ditahan secara otomatis di **EcoVault Escrow** sampai tonase dan kualitas bahan baku diverifikasi.
+                    Dana pembeli korporat akan ditahan secara otomatis di <strong className="font-extrabold text-amber-950">EcoVault Escrow</strong> sampai tonase dan kualitas bahan baku diverifikasi.
                   </span>
                 </div>
 
